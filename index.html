@@ -3,67 +3,52 @@
 <head>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; overflow: hidden; font-family: sans-serif; }
-        
-        .bg { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0; transition: opacity 0.3s ease; z-index: -1;
+        body, html { height: 100%; overflow: hidden; font-family: 'Segoe UI', sans-serif; background: #0d1117; }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
+        .shape { 
+            position: absolute; width: 80px; height: 80px; 
+            background: rgba(255, 255, 255, 0.1); border-radius: 50%;
+            animation: float 6s infinite ease-in-out; z-index: 0;
+        }
+
+        /* Container for content */
         #main-container { 
             height: 100vh; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; color: white;
-            text-align: center;
+            text-align: center; position: relative; z-index: 1;
         }
 
-        h1 { font-size: 80px; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
-        h2 { font-size: 30px; margin-bottom: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        h1 { font-size: 80px; font-weight: 800; }
+        h2 { font-size: 30px; opacity: 0.8; margin-top: 10px; }
 
-        nav { display: flex; gap: 30px; }
-        nav a { 
-            color: white; text-decoration: none; font-size: 20px; 
-            font-weight: bold; cursor: pointer; position: relative; padding: 5px;
-        }
-        nav a::after {
-            content: ""; position: absolute; bottom: -5px; left: 0; width: 0; 
-            height: 2px; background: white; transition: 0.3s;
-        }
-        nav a:hover::after { width: 100%; }
+        nav { margin-top: 40px; display: flex; gap: 30px; }
+        nav a { color: white; cursor: pointer; font-size: 20px; font-weight: bold; padding: 10px; transition: 0.3s; }
+        nav a:hover { color: #58a6ff; }
     </style>
 </head>
 <body>
 
-    <!-- Pre-loading Images in Hidden Divs -->
-    <div style="display:none;">
-        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e">
-        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05">
-    </div>
-
-    <div id="bg1" class="bg" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470'); opacity: 1;"></div>
-    <div id="bg2" class="bg" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e');"></div>
-    <div id="bg3" class="bg" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05');"></div>
+    <!-- Floating Shapes (Like the Screenshot 2026-06-01 010600.png) -->
+    <div class="shape" style="top: 20%; left: 15%;"></div>
+    <div class="shape" style="top: 60%; left: 80%; width: 120px; height: 120px; animation-delay: 2s;"></div>
+    <div class="shape" style="top: 30%; left: 70%; width: 50px; height: 50px; animation-delay: 1s;"></div>
 
     <div id="main-container">
-        <div id="content">
-            <h1>AMAN SHARMA</h1>
-            <h2>ENGINEER | NITIAN</h2>
-        </div>
-
+        <h1>AMAN SHARMA</h1>
+        <h2>ENGINEER | NITIAN</h2>
         <nav>
-            <a onclick="update('bg1', 'AMAN SHARMA', 'ENGINEER | NITIAN')">HOME</a>
-            <a onclick="update('bg2', 'MY SKILLS', 'PYTHON | WEB DEV | C++')">SKILLS</a>
-            <a onclick="update('bg3', 'ABOUT ME', 'PASSIONATE DESIGNER')">ABOUT</a>
+            <a>HOME</a>
+            <a>SKILLS</a>
+            <a>ABOUT</a>
         </nav>
     </div>
 
-    <script>
-        function update(bgId, title, sub) {
-            document.querySelectorAll('.bg').forEach(el => el.style.opacity = '0');
-            document.getElementById(bgId).style.opacity = '1';
-            document.getElementById('content').innerHTML = "<h1>" + title + "</h1><h2>" + sub + "</h2>";
-        }
-    </script>
 </body>
 </html>
