@@ -5,50 +5,61 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { height: 100%; overflow: hidden; font-family: 'Segoe UI', sans-serif; background: #0d1117; }
 
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        /* Glowing Pink/Purple Blobs (The "GitHub" style floating effect) */
+        @keyframes move {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(100px, 50px); }
+            100% { transform: translate(0, 0); }
         }
 
-        .shape { 
-            position: absolute; width: 80px; height: 80px; 
-            background: rgba(255, 255, 255, 0.1); border-radius: 50%;
-            animation: float 6s infinite ease-in-out; z-index: 0;
+        .blob { 
+            position: absolute; width: 300px; height: 300px; 
+            background: radial-gradient(circle, #ff007f, #7b2cbf); 
+            filter: blur(80px); opacity: 0.6; border-radius: 50%;
+            animation: move 10s infinite alternate ease-in-out; z-index: 0;
         }
 
-        /* Container for content */
         #main-container { 
             height: 100vh; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; color: white;
             text-align: center; position: relative; z-index: 1;
         }
 
-        h1 { font-size: 80px; font-weight: 800; }
-        h2 { font-size: 30px; opacity: 0.8; margin-top: 10px; }
+        h1 { font-size: 80px; font-weight: 800; margin-bottom: 10px; }
+        h2 { font-size: 30px; opacity: 0.8; margin-bottom: 30px; }
 
-        nav { margin-top: 40px; display: flex; gap: 30px; }
-        nav a { color: white; cursor: pointer; font-size: 20px; font-weight: bold; padding: 10px; transition: 0.3s; }
-        nav a:hover { color: #58a6ff; }
+        nav { display: flex; gap: 40px; }
+        nav a { 
+            color: white; text-decoration: none; font-size: 20px; 
+            font-weight: bold; cursor: pointer; padding: 10px; transition: 0.3s;
+        }
+        nav a:hover { color: #ff007f; }
     </style>
 </head>
 <body>
 
-    <!-- Floating Shapes (Like the Screenshot 2026-06-01 010600.png) -->
-    <div class="shape" style="top: 20%; left: 15%;"></div>
-    <div class="shape" style="top: 60%; left: 80%; width: 120px; height: 120px; animation-delay: 2s;"></div>
-    <div class="shape" style="top: 30%; left: 70%; width: 50px; height: 50px; animation-delay: 1s;"></div>
+    <!-- Pink/Purple Floating Blobs -->
+    <div class="blob" style="top: -100px; left: -100px;"></div>
+    <div class="blob" style="bottom: -100px; right: -100px; animation-delay: -5s;"></div>
 
     <div id="main-container">
-        <h1>AMAN SHARMA</h1>
-        <h2>ENGINEER | NITIAN</h2>
+        <div id="content">
+            <h1 id="title">AMAN SHARMA</h1>
+            <h2 id="subtitle">ENGINEER | NITIAN</h2>
+        </div>
+
         <nav>
-            <a>HOME</a>
-            <a>SKILLS</a>
-            <a>ABOUT</a>
+            <a onclick="update('AMAN SHARMA', 'ENGINEER | NITIAN')">HOME</a>
+            <a onclick="update('MY SKILLS', 'PYTHON | WEB DEV | C++')">SKILLS</a>
+            <a onclick="update('ABOUT ME', 'PASSIONATE DESIGNER')">ABOUT</a>
         </nav>
     </div>
 
+    <script>
+        function update(title, sub) {
+            document.getElementById('title').innerText = title;
+            document.getElementById('subtitle').innerText = sub;
+        }
+    </script>
 </body>
 </html>
