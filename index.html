@@ -1,52 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>Aman Sharma | Portfolio</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #0d1117; color: white; font-family: sans-serif; overflow: hidden; height: 100vh; }
-
-        /* GitHub Style Purple/Pink Glow */
-        .glow {
-            position: absolute; width: 400px; height: 400px;
-            background: radial-gradient(circle, #8b5cf6, #ec4899);
-            filter: blur(150px); opacity: 0.5; border-radius: 50%;
-            z-index: -1; animation: move 8s infinite alternate;
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
-        }
-
-        #ui { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        h1 { font-size: 70px; font-weight: 800; margin-bottom: 10px; }
-        h2 { font-size: 25px; opacity: 0.7; margin-bottom: 40px; }
-        
-        .menu { display: flex; gap: 30px; }
-        .menu a { color: white; cursor: pointer; padding: 10px 20px; border: 1px solid #30363d; border-radius: 8px; transition: 0.3s; }
-        .menu a:hover { background: #30363d; border-color: #8b5cf6; }
+        body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        .glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, #db2777, #7c3aed); filter: blur(100px); opacity: 0.4; z-index: -1; animation: pulse 5s infinite alternate; }
+        @keyframes pulse { from { transform: scale(0.8); } to { transform: scale(1.2); } }
+        .content { text-align: center; }
+        h1 { font-size: 60px; }
+        .nav { margin-top: 20px; }
+        button { background: transparent; color: white; border: 1px solid #30363d; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #30363d; }
     </style>
 </head>
 <body>
     <div class="glow"></div>
-    <div id="ui">
+    <div class="content">
         <h1 id="t">AMAN SHARMA</h1>
-        <h2 id="s">ENGINEER | NITIAN</h2>
-        <div class="menu">
-            <a onclick="up('AMAN SHARMA', 'ENGINEER | NITIAN')">HOME</a>
-            <a onclick="up('MY SKILLS', 'PYTHON | WEB DEV | C++')">SKILLS</a>
-            <a onclick="up('ABOUT ME', 'PASSIONATE DESIGNER')">ABOUT</a>
+        <p id="s">ENGINEER | NITIAN</p>
+        <div class="nav">
+            <button onclick="up('AMAN SHARMA', 'ENGINEER | NITIAN')">HOME</button>
+            <button onclick="up('MY SKILLS', 'PYTHON | WEB DEV')">SKILLS</button>
         </div>
     </div>
-
     <script>
-        function up(t, s) {
-            document.getElementById('t').innerText = t;
-            document.getElementById('s').innerText = s;
-        }
+        function up(t, s) { document.getElementById('t').innerText = t; document.getElementById('s').innerText = s; }
     </script>
 </body>
 </html>
